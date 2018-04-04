@@ -14,6 +14,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.java8.movies.FilterMovies;
 import com.java8.movies.model.GenreEnum;
 import com.java8.movies.model.Movie;
+import com.test.predicates.FamilyPredicateGenre;
 import com.test.predicates.HistoryPredicateGenre;
 import com.test.predicates.HorrorPredicateGenre;
 
@@ -53,6 +54,24 @@ public class TestMoviesPredicates {
 		when(historyMovie2.getGenre()).thenReturn(GenreEnum.History);
 
 		List<Movie> historyMovies =  filterMovies.filterMovies(movies, new HistoryPredicateGenre());
+		Assert.assertTrue(historyMovies.size() == 2);
+	}
+	
+	
+	@Test
+	public void testFamilyGenreMoviesPredicate() {
+		FilterMovies filterMovies =new FilterMovies(); 
+		Movie historyMovie1 = mock(Movie.class);
+		Movie historyMovie2 = mock(Movie.class);
+		List<Movie> movies = new ArrayList<Movie>();
+
+		movies.add(historyMovie1);
+		movies.add(historyMovie2);
+
+		when(historyMovie1.getGenre()).thenReturn(GenreEnum.Family);
+		when(historyMovie2.getGenre()).thenReturn(GenreEnum.Family);
+
+		List<Movie> historyMovies =  filterMovies.filterMovies(movies, new FamilyPredicateGenre());
 		Assert.assertTrue(historyMovies.size() == 2);
 	}
 
