@@ -18,7 +18,7 @@ import com.java8.movies.model.Movie;
 public class MovieTestLambda {
 
 	@Test
-	public void testLambda(){
+	public void testLambdaExpHorrorMovies(){
 		FilterMovies filterMovies =new FilterMovies(); 
 		Movie horrorMovie1 = mock(Movie.class);
 		Movie horrorMovie2 = mock(Movie.class);
@@ -33,5 +33,23 @@ public class MovieTestLambda {
 		
 		List<Movie> horrorMovies = filterMovies.filterMovies(movies,(Movie movie)->GenreEnum.Horror.equals(movie.getGenre())  );
 		Assert.assertEquals(3,horrorMovies.size());
+	}
+	
+
+	@Test
+	public void testLambdaExpFamily(){
+		FilterMovies filterMovies =new FilterMovies(); 
+		Movie horrorMovie1 = mock(Movie.class);
+		Movie horrorMovie2 = mock(Movie.class);
+		Movie horrorMovie3 = mock(Movie.class);
+		List<Movie> movies = new ArrayList<Movie>();
+		movies.add(horrorMovie1);
+		movies.add(horrorMovie2);
+		movies.add(horrorMovie3);
+		when(horrorMovie1.getGenre()).thenReturn(GenreEnum.Horror);
+		when(horrorMovie2.getGenre()).thenReturn(GenreEnum.Horror);
+		when(horrorMovie3.getGenre()).thenReturn(GenreEnum.Horror);
+		List<Movie> horrorMovies = filterMovies.filterMovies(movies,(Movie movie)->GenreEnum.Family.equals(movie.getGenre())  );
+		Assert.assertEquals(0,horrorMovies.size());
 	}
 }
