@@ -8,7 +8,6 @@ public class FilterMovies {
 	public <T> List<T> filterMovies(List<T> list, Predicate<T> predicate) {
 		List<T> m = new ArrayList<T>();
 		for (T e : list) {
-			System.out.println(predicate.test(e));
 			if (predicate.test(e)) {
 				m.add(e);
 			}

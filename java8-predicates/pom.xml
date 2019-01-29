@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.java8</groupId>
-		<artifactId>learning-java8</artifactId>
+		<artifactId>java8-master</artifactId>
 		<version>1.0.0</version>
 	</parent>
 	<artifactId>java8-predicates</artifactId>
-	<packaging>jar</packaging>
 	<name>java8-predicates</name>
+	<packaging>jar</packaging>
 </project>

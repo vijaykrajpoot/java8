@@ -24,6 +24,7 @@ public class MovieTestLambda {
 		Movie horrorMovie1 = mock(Movie.class);
 		Movie horrorMovie2 = mock(Movie.class);
 		Movie horrorMovie3 = mock(Movie.class);
+
 		List<Movie> movies = new ArrayList<Movie>();
 		movies.add(horrorMovie1);
 		movies.add(horrorMovie2);
@@ -32,7 +33,11 @@ public class MovieTestLambda {
 		when(horrorMovie2.getGenre()).thenReturn(GenreEnum.Horror);
 		when(horrorMovie3.getGenre()).thenReturn(GenreEnum.Horror);
 		
-		List<Movie> horrorMovies = filterMovies.filterMovies(movies,(Movie movie)->GenreEnum.Horror.equals(movie.getGenre())  );
+		List<Movie> horrorMovies = filterMovies.filterMovies(movies,(Movie movie)-> {
+			boolean flag=  GenreEnum.Horror.equals(movie.getGenre());
+			return flag;
+		});
+
 		Assert.assertEquals(3,horrorMovies.size());
 	}
 	
