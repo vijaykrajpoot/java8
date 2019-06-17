@@ -1,5 +1,6 @@
 package com.test.java8.predicate;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -19,7 +20,7 @@ import com.test.predicates.HistoryPredicateGenre;
 import com.test.predicates.HorrorPredicateGenre;
 
 @RunWith(PowerMockRunner.class)
-public class TestMoviesPredicates {
+public class TestMoviesPredicatesBehaviorPattern {
 	
 
 	@Test
@@ -71,8 +72,9 @@ public class TestMoviesPredicates {
 		when(historyMovie1.getGenre()).thenReturn(GenreEnum.Family);
 		when(historyMovie2.getGenre()).thenReturn(GenreEnum.Family);
 
-		List<Movie> historyMovies =  filterMovies.filterMovies(movies, new FamilyPredicateGenre());
-		Assert.assertTrue(historyMovies.size() == 2);
+		List<Movie> familyMovies =  filterMovies.filterMovies(movies, new FamilyPredicateGenre());
+		Assert.assertTrue(familyMovies.size() == 2);
+		assertTrue(familyMovies.get(0).getGenre()==GenreEnum.Family);
 	}
 
 	
