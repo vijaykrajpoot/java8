@@ -16,7 +16,7 @@
 		</license>
 	</licenses>
 	<modules>
-		<module>../java8-predicates</module>
+		<module>../java7-predicates</module>
 		<module>../java8-lambda</module>
 	</modules>
 	<properties>
