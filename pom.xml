@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.java8</groupId>
-	<artifactId>java8-master</artifactId>
+	<artifactId>java8</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>java8-master</name>
@@ -16,8 +16,8 @@
 		</license>
 	</licenses>
 	<modules>
-		<module>../java7-predicates</module>
-		<module>../java8-lambda</module>
+		<module>java7-predicates</module>
+		<module>java8-lambda</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,7 +43,7 @@
 			<!-- <scope>provided</scope> -->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.github.benas/random-beans -->
-		<!-- <dependency> <groupId>io.github.benas</groupId> <artifactId>random-beans</artifactId> 
+		<!-- <dependency> <groupId>io.github.benas</groupId> <artifactId>random-beans</artifactId>
 			<version>${random.beans.version}</version> </dependency> -->
 		<dependency>
 			<groupId>org.powermock</groupId>
@@ -69,20 +69,6 @@
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency> -->
+</dependencies>
 
-	</dependencies>
-	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<testSourceDirectory>src/test/java</testSourceDirectory>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
