@@ -3,14 +3,19 @@ package com.java8.movies.business;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class App {
 
     public static void main(String[] args) {
-        List<Movie> movies=generateMovies(50);
-
+        Instant st1 = Instant.now();
+        List<Movie> movies=generateMovies(5000000);
+        Instant fn1 = Instant.now();
+        long te1 = Duration.between(st1, fn1).toMillis();  //in millis
+        System.out.println("Movie Population Time :"+te1);
         // Filter Horror Movies
         List<Movie> filteredMovies = movies
                 .stream()
@@ -27,11 +32,11 @@ public class App {
 
         // Filter Adventure Movies
         filteredMovies = movies
-                .stream()
+                .parallelStream()
                 .sorted(Comparator.comparing(movie -> movie.getGenre().name()))
                 .collect(Collectors.toList());
         System.out.println("Sorted Movies:");
-        filteredMovies.forEach(movie -> System.out.println(movie.getGenre() +":"+ movie.getTitle()));
+       // filteredMovies.forEach(movie -> System.out.println(movie.getGenre() +":"+ movie.getTitle()));
 
         // Mapped All movies based on Gener
         //
@@ -39,9 +44,11 @@ public class App {
         //  Action = movie8,movie10,movie43,movie12,movie59,movie60
         //
         //
+
         System.out.println("$$$$$$$$$$$$$$$$$$ Mapped/GroupBy All movies based on Genre");
+        Instant start = Instant.now();
         Map<GenreEnum, List<Movie>> filteredAllGenreMovies = movies
-                .stream()
+                .parallelStream()
                 // Sorted
                 // Method-1
                 //.sorted((o1, o2) -> o1.getGenre().name().compareTo(o2.getGenre().name()))
@@ -56,10 +63,12 @@ public class App {
                 .collect(Collectors.groupingBy(Movie::getGenre, TreeMap::new, Collectors.toList()));
         // Get each genre and their corresponding moviesList
         filteredAllGenreMovies.forEach((genre, moviesList) -> System.out.println(genre.name() + ":" + moviesList.size()));
-
+        Instant finish = Instant.now();
+        long timeElapsed = Duration.between(start, finish).toMillis();  //in millis
+        System.out.println("Time Elapsed:"+ timeElapsed);
         List<Movie> horrorMovie = filteredAllGenreMovies.get(GenreEnum.Horror);
         if (horrorMovie!= null) {
-            horrorMovie.forEach(movie -> System.out.println(movie.getGenre() +"-"+  movie));
+        //    horrorMovie.forEach(movie -> System.out.println(movie.getGenre() +"-"+  movie));
         }
     }
 
