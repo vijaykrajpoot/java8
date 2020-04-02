@@ -31,9 +31,7 @@ public class App {
                 .sorted(Comparator.comparing(movie -> movie.getGenre().name()))
                 .collect(Collectors.toList());
         System.out.println("Sorted Movies:");
-        filteredMovies.forEach(movie -> {
-           // System.out.println(movie.getGenre() +":"+ movie.getTitle());
-        });
+        filteredMovies.forEach(movie -> System.out.println(movie.getGenre() +":"+ movie.getTitle()));
 
         // Mapped All movies based on Gener
         //
