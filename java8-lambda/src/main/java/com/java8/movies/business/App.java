@@ -4,10 +4,7 @@ import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class App {
@@ -61,7 +58,13 @@ public class App {
         System.out.println("$$$$$$$$$$$$$$$$$$Mapped All movies based on Genre");
         Map<GenreEnum, List<Movie>> filteredAllGenreMovies = movies
                 .stream()
-                .sorted((o1, o2) -> o1.getGenre().name().compareTo(o2.getGenre().name()))
+                // Sorted
+                // Method-1
+                //.sorted((o1, o2) -> o1.getGenre().name().compareTo(o2.getGenre().name()))
+                // Method-2
+                //.sorted((o1, o2) -> { return o1.getGenre().name().compareTo(o2.getGenre().name()); })
+                // Method-3
+                .sorted(Comparator.comparing(o -> o.getGenre().name()))
                 .collect(Collectors.groupingBy(Movie::getGenre,LinkedHashMap::new,Collectors.toList()));
 
         filteredAllGenreMovies.forEach((genreEnum, m) -> {
