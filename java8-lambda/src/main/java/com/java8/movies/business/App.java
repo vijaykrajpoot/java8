@@ -3,7 +3,6 @@ package com.java8.movies.business;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
 
-import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -65,13 +64,19 @@ public class App {
                 //.sorted((o1, o2) -> { return o1.getGenre().name().compareTo(o2.getGenre().name()); })
                 // Method-3
                 .sorted(Comparator.comparing(o -> o.getGenre().name()))
-                .collect(Collectors.groupingBy(Movie::getGenre,LinkedHashMap::new,Collectors.toList()));
-
-        filteredAllGenreMovies.forEach((genreEnum, m) -> {
-            System.out.println(genreEnum.name() + ":" + m.size());
+                // Collect movies by their Genre
+                .collect(Collectors.groupingBy(Movie::getGenre, LinkedHashMap::new, Collectors.toList()));
+        // Get each genre and their corresponding moviesList
+        filteredAllGenreMovies.forEach((genre, moviesList) -> {
+            System.out.println(genre.name() + ":" + moviesList.size());
         });
 
-        //  System.out.println("No Of Adventure Movies:"+movies.size());
+        List<Movie> horrorMovie = filteredAllGenreMovies.get(GenreEnum.Horror);
+        if (horrorMovie!= null) {
+            horrorMovie.forEach(movie -> {
+                System.out.println(movie.getGenre() +"-"+  movie);
+            });
+        }
     }
 }
 
