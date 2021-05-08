@@ -10,7 +10,14 @@ import java.util.Arrays;
 public class FileFilterExample {
 
     public static void main(String[] args) {
-        FileFilter fileFilter = new JavaFileFilter();
+        FileFilter fileFilter = new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.getName().endsWith("java");
+            }
+        };
+
+        FileFilter ff = (File file) -> file.getName().endsWith("java");
         File dir = new File("/tmp");
         File[] javaFile = dir.listFiles(fileFilter);
         System.out.println(Arrays.toString(javaFile));
