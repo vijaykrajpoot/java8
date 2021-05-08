@@ -1,4 +1,4 @@
-package com.java8.bascis;
+package com.java8.basics;
 
 public class Display {
 

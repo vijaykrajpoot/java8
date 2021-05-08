@@ -1,4 +1,4 @@
-package com.java8.bascis;
+package com.java8.basics;
 public class OperationByJava8 {
     public int add(int a, int b) {
         Operation op = (num1, num2) -> num1 + num2;

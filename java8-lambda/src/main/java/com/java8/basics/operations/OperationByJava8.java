@@ -1,4 +1,4 @@
-package com.java8.bascis.operations;
+package com.java8.basics.operations;
 
 public class OperationByJava8 {
 
