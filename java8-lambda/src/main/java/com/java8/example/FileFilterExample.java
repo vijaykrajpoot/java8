@@ -19,8 +19,13 @@ public class FileFilterExample {
 
         FileFilter ff = (File file) -> file.getName().endsWith("java");
         File dir = new File("/tmp");
-        File[] javaFile = dir.listFiles(fileFilter);
-        System.out.println(Arrays.toString(javaFile));
+//
+//        File[] javaFile = dir.listFiles(fileFilter);
+//        System.out.println(Arrays.toString(javaFile));
+
+        File[] javaFile1 = dir.listFiles(file -> file.getName().endsWith("java"));
+        System.out.println("javaFile1:"+Arrays.toString(javaFile1));
+
     }
 
 }
