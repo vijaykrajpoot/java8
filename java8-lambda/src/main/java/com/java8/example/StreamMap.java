@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class StreamMap {
     public static void main(String[] args) {
@@ -23,7 +24,10 @@ public class StreamMap {
                 .forEach(System.out::println);
 
         System.out.println("FlatMap..................");
-        lists.stream().flatMap(ll->ll.stream())
+        Function<List<Integer>, Stream<Integer>> flatMapper = ll -> ll.stream();
+
+        lists.stream()
+                .flatMap(flatMapper)
                 .forEach(System.out::println);
 
     }
