@@ -14,10 +14,15 @@ public class StreamMap {
 
         List<List<Integer>> lists = Arrays.asList(l1, l2, l3);
         System.out.println(lists);
-        Function<List<Integer>, Integer> fSize = List::size;
+//        Function<List<Integer>, Integer> fSize =  ll -> {
+//            ll.forEach(integer -> {
+//                  integer=integer*2;
+//            });
+//            return
+//        };
 
 
-        lists.stream().map(fSize)
+        lists.stream().map(ll->ll.isEmpty())
                 .forEach(System.out::println);
         System.out.println("Map Stream ..................");
         lists.stream().map(ll->ll.stream())
