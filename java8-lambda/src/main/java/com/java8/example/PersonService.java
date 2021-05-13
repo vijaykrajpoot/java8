@@ -7,18 +7,20 @@ import java.util.stream.Stream;
 /**
  * @author vkumar1 created on 5/11/21
  */
-public class CustomerService {
+public class PersonService {
 
-    public static List<Customer> all() {
+    public static List<Person> all() {
         return Stream.of(
-                new Customer().firstName("vijay").LastName("Rajput").email("vijay.rajput@gmail.com").phoneNumber("4084667618"),
-                new Customer().firstName("ajay").LastName("Rajput").email("ajay.rajput@hotmail.com").phoneNumber("2547896145"),
-                new Customer().firstName("kamal").LastName("Rajput").email("kamal.rajput@gmail.com").phoneNumber("2354859874"),
-                new Customer().firstName("Amit").LastName("Garg").email("amit.garg@gmail.com").phoneNumber("8758968521"),
-                new Customer().firstName("Prakash").LastName("Ratna").email("prakash.ratna@gmail.com").phoneNumber("5874632541"),
-                new Customer().firstName("Shashank").LastName("Arora").email("Shashank.arora@gmail.com").phoneNumber("368974512"),
-                new Customer().firstName("vicky").LastName("Garg").email("vickey.garg@gmail.com").phoneNumber("9856231478"),
-                new Customer().firstName("jd").LastName("B").email("jd@yahoo.com").phoneNumber("6582145796")
+                new Person().firstName("Vijay").age(23).lastName("Rajput").email("vijay.rajput@gmail.com").phoneNumber("4084667618"),
+                new Person().firstName("Ajay").age(25).lastName("Rajput").email("ajay.rajput@hotmail.com").phoneNumber("2547896145"),
+                new Person().firstName("Kamal").age(43).lastName("Rajput").email("kamal.rajput@gmail.com").phoneNumber("2354859874"),
+                new Person().firstName("Amit").age(43).lastName("Garg").email("amit.garg@gmail.com").phoneNumber("8758968521"),
+                new Person().firstName("Prakash").age(45).lastName("Ratna").email("prakash.ratna@gmail.com").phoneNumber("5874632541"),
+                new Person().firstName("Jack").age(45).lastName("Ryan").email("prakash.ratna@gmail.com").phoneNumber("5874632541"),
+                new Person().firstName("Shashank").age(50).lastName("Arora").email("Shashank.arora@gmail.com").phoneNumber("368974512"),
+                new Person().firstName("Vicky").age(45).lastName("Garg").email("vickey.garg@gmail.com").phoneNumber("9856231478"),
+                new Person().firstName("Pavan").age(45).lastName("Saxena").email("vickey.garg@gmail.com").phoneNumber("9856231478"),
+                new Person().firstName ("Jd").age(51).lastName("B").email("jd@yahoo.com").phoneNumber("6582145796")
 
 
         ).collect(Collectors.toList());

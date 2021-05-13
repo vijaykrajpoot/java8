@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.function.BinaryOperator;
+import java.util.function.Predicate;
 
 /**
  * @author vkumar1 created on 5/11/21
@@ -43,7 +44,10 @@ public class MapReduceExample {
         // findMaxMethodRef
         int findMaxMethodRef = numbers.stream().reduce(Integer::max).get();
         System.out.println("findMaxMethodRef:" + findMaxMethodRef);
-
+        // BiFunction
+        BinaryOperator<Integer> sumOperator = (Integer a, Integer b) -> (a + b);
+        Integer sumUsingOperator = numbers.stream().reduce(sumOperator).get();
+        System.out.println("sumUsingOperator:" + sumUsingOperator);
 
         List<String> strings = Arrays.asList("one", "two", "three", "four", "five", "six", "seven");
 
@@ -88,13 +92,29 @@ public class MapReduceExample {
         // Get Stream
         // Filter employee via grade
         // Get The salary ==> Map the salary
+        Predicate<Employee> gradeA = emp -> emp.getGrade().equalsIgnoreCase("A");
+        Predicate<Employee> gradeB = emp -> emp.getGrade().equalsIgnoreCase("B");
+        Predicate<Employee> gradeC = emp -> emp.getGrade().equalsIgnoreCase("C");
         double sumOfSalary = employees.stream()
-                .filter(emp -> emp.getGrade().equalsIgnoreCase("A"))
+                .filter(gradeA.or(gradeB))
                 .map(Employee::getSalary)
                 .mapToDouble(s -> s)
                 .sum();
         System.out.println("sumOfSalary:" + sumOfSalary);
+        System.out.println("____________________________");
+        employees.stream().filter(gradeA.or(gradeB)).forEach(System.out::println);
 
+        long count = employees.stream()
+                .filter(gradeA.or(gradeC))
+                .count();
+        System.out.println("Count of Grade-A & Grade C:" + count);
 
+        boolean anyMatch = employees.stream()
+                .anyMatch(emp -> emp.getSalary() > 9000000);
+        System.out.println("Salary() > 10000:" + anyMatch);
+
+       boolean m= employees.stream()
+                .allMatch(e->e.getSalary()>1000);
+        System.out.println("AllMatched:" + m);
     }
 }
