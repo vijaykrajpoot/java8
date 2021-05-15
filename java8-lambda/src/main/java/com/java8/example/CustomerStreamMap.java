@@ -11,7 +11,7 @@ public class CustomerStreamMap {
 
     public static void main(String[] args) {
 
-        List<Person> customers = PersonService.all();
+        List<Person> customers = PersonService.getAllPerson();
         Predicate<Person> emailPredicate= email->email.getEmail().endsWith("gmail.com");
         List<String> emails = customers.stream().filter(emailPredicate).map(Person::getEmail).collect(Collectors.toList());
         emails.forEach(System.out::println);

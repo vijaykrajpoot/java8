@@ -9,7 +9,7 @@ import java.util.stream.Stream;
  */
 public class PersonService {
 
-    public static List<Person> all() {
+    public static List<Person> getAllPerson() {
         return Stream.of(
                 new Person().firstName("Vijay").age(23).lastName("Rajput").email("vijay.rajput@gmail.com").phoneNumber("4084667618"),
                 new Person().firstName("Ajay").age(25).lastName("Rajput").email("ajay.rajput@hotmail.com").phoneNumber("2547896145"),
@@ -20,12 +20,21 @@ public class PersonService {
                 new Person().firstName("Shashank").age(50).lastName("Arora").email("Shashank.arora@gmail.com").phoneNumber("368974512"),
                 new Person().firstName("Vicky").age(45).lastName("Garg").email("vickey.garg@gmail.com").phoneNumber("9856231478"),
                 new Person().firstName("Pavan").age(45).lastName("Saxena").email("vickey.garg@gmail.com").phoneNumber("9856231478"),
-                new Person().firstName ("Jd").age(51).lastName("B").email("jd@yahoo.com").phoneNumber("6582145796")
+                new Person().firstName("Jd").age(51).lastName("B").email("jd@yahoo.com").phoneNumber("6582145796")
 
 
         ).collect(Collectors.toList());
     }
 
-    ;
+    public static Person findPersonByPersonEmail(String email) {
+        return getAllPerson()
+                .stream()
+                .filter(person -> person.getEmail().equalsIgnoreCase(email))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("Person with email: '" + email + "' not found"));
+
+
+    }
+
 
 }

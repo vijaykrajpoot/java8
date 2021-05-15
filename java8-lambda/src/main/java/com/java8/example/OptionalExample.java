@@ -4,7 +4,6 @@ import java.util.Optional;
 
 public class OptionalExample {
     public static void main(String[] args) {
-
         Person person = new Person().firstName("Vijay").lastName("Rajput").age(40).phoneNumber("329740283").phoneNumber("9484983920");
 
         // Optional Empty
@@ -24,15 +23,43 @@ public class OptionalExample {
         }
 
         String emailOrElse = email1.orElse("NoEmail");
-        System.out.println("emailOrElse:"+emailOrElse);
+        System.out.println("emailOrElse:" + emailOrElse);
 
 
-
-
+        try {
+            Optional<String> email = Optional.ofNullable(person.getEmail());
+            email.orElseThrow(() -> new IllegalArgumentException("Email not found"));
+        } catch (Exception ex) {
+            System.err.println("2.Got NPE:" + ex.getLocalizedMessage());
+        }
 
 
         Optional<String> fName = Optional.ofNullable(person.getFirstName());
         fName.ifPresent(System.out::println);
+
+        // Find person with email using method and return Optional
+        try {
+            String email = "vijay.kumar@gmail.com";
+            Optional<Person> searchedPerson = Optional.ofNullable(PersonService.findPersonByPersonEmail("vijay.kumar@gmail.com"));
+            searchedPerson.ifPresent(person1 -> {
+                System.out.println("Person found with email:" + email);
+                System.out.println(person1);
+            });
+        } catch (Exception ex) {
+            System.err.println("Error Occurred : " + ex.getLocalizedMessage());
+        }
+
+
+        try {
+            String email = "vijay.rajput@gmail.com";
+            Optional<Person> searchedPerson = Optional.ofNullable(PersonService.findPersonByPersonEmail("vijay.rajput@gmail.com"));
+            searchedPerson.ifPresent(person1 -> {
+                System.out.println("Person found with email:" + email);
+                System.out.println(person1);
+            });
+        } catch (Exception ex) {
+            System.err.println("Error Occurred : " + ex.getLocalizedMessage());
+        }
 
     }
 }

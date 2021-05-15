@@ -6,7 +6,7 @@ import java.util.stream.*;
 public class CollectorsExample {
 
     public static void main(String[] args) {
-        List<Person> persons = PersonService.all();
+        List<Person> persons = PersonService.getAllPerson();
         String name =
                 persons.stream()
                         .map(customer -> {
