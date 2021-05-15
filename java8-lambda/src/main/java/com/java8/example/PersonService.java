@@ -32,7 +32,15 @@ public class PersonService {
                 .filter(person -> person.getEmail().equalsIgnoreCase(email))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("Person with email: '" + email + "' not found"));
+    }
 
+
+    public static List<Person> getEmployeeSortedByLastName() {
+        return getAllPerson()
+                .stream()
+                .sorted((o1, o2) -> {
+                    return o1.getEmail().compareTo(o2.getEmail());
+                }).collect(Collectors.toList());
 
     }
 
