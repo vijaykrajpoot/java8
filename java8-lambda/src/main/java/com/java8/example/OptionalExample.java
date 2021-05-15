@@ -7,7 +7,6 @@ public class OptionalExample {
 
         Person person = new Person().firstName("Vijay").lastName("Rajput").age(40).phoneNumber("329740283").phoneNumber("9484983920");
 
-
         // Optional Empty
         System.out.println("1.Optional.empty():" + Optional.empty());
         // Optional Of
@@ -20,6 +19,18 @@ public class OptionalExample {
         // Optional ofNullable
         Optional<String> email1 = Optional.ofNullable(person.getEmail());
         System.out.println("3.email1" + email1);
+        if (email1.isPresent()) {
+            System.out.println("email1.get()" + email1.get());
+        }
+
+        String emailOrElse = email1.orElse("NoEmail");
+        System.out.println("emailOrElse:"+emailOrElse);
+
+
+
+
+
+
         Optional<String> fName = Optional.ofNullable(person.getFirstName());
         fName.ifPresent(System.out::println);
 
