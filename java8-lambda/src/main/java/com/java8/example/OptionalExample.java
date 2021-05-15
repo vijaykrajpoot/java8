@@ -40,7 +40,7 @@ public class OptionalExample {
         // Find person with email using method and return Optional
         try {
             String email = "vijay.kumar@gmail.com";
-            Optional<Person> searchedPerson = Optional.ofNullable(PersonService.findPersonByPersonEmail("vijay.kumar@gmail.com"));
+            Optional<Person> searchedPerson = Optional.ofNullable(PersonService.findPersonByPersonEmail(email));
             searchedPerson.ifPresent(person1 -> {
                 System.out.println("Person found with email:" + email);
                 System.out.println(person1);
