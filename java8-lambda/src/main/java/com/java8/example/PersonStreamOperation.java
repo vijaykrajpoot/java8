@@ -14,17 +14,24 @@ public class PersonStreamOperation {
         List<Person> persons = PersonService.getAllPerson();
         // Collect all the email.
         Predicate<Person> emailPredicate = email -> email.getEmail().endsWith("gmail.com");
-        List<String> emails = persons.stream().filter(emailPredicate).map(Person::getEmail).collect(Collectors.toList());
+        List<String> emails = persons
+                .stream()
+                .filter(emailPredicate)
+                .map(Person::getEmail)
+                .collect(Collectors.toList());
         emails.forEach(System.out::println);
-
+        System.out.println("______________________________________________________________");
         // Get all the Person sorted by their last name
         List<Person> personList = persons.stream()
                 .sorted((p1, p2) -> {
                     return p1.getLastName().compareTo(p2.getLastName());
                 })
+                .collect(Collectors.toList())
+                .stream()
+                .sorted((p1, p2) -> {
+                    return p1.getFirstName().compareTo(p2.getFirstName());
+                })
                 .collect(Collectors.toList());
-        System.out.println(personList);
-
+        personList.forEach(System.out::println);
     }
-
 }
