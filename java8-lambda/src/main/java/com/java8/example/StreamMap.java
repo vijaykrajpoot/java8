@@ -50,5 +50,18 @@ public class StreamMap {
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(System.out::println);
 
+
+        Map<Person, String> personMap = new HashMap<>();
+        PersonService.getAllPerson().forEach(person -> {
+            personMap.put(person, person.getEmail());
+        });
+
+        System.out.println(personMap);
+
+        personMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.comparing(Person::getLastName)))
+                .forEach(System.out::println);
+        
     }
 }
