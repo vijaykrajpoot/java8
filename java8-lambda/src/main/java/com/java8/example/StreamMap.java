@@ -1,8 +1,6 @@
 package com.java8.example;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -22,17 +20,34 @@ public class StreamMap {
 //        };
 
 
-        lists.stream().map(ll->ll.isEmpty())
+        lists.stream().map(ll -> ll.isEmpty())
                 .forEach(System.out::println);
         System.out.println("Map Stream ..................");
-        lists.stream().map(ll->ll.stream())
+        lists.stream().map(ll -> ll.stream())
                 .forEach(System.out::println);
-
+        // Flat map
         System.out.println("FlatMap..................");
         Function<List<Integer>, Stream<Integer>> flatMapper = ll -> ll.stream();
 
         lists.stream()
                 .flatMap(flatMapper)
+                .forEach(System.out::println);
+        // SortMaps
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("eight", 8);
+        map.put("four", 4);
+        map.put("seven", 7);
+        map.put("nine", 9);
+
+        map.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(System.out::println);
+        System.out.println("________________________________");
+        map.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
                 .forEach(System.out::println);
 
     }
