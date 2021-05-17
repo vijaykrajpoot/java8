@@ -57,11 +57,17 @@ public class StreamMap {
         });
 
         System.out.println(personMap);
-
+        // Sort/Comparator
         personMap.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByKey(Comparator.comparing(Person::getLastName)))
                 .forEach(System.out::println);
-        
+        System.out.println("---------------------------------------------------");
+        // Sort by name but reversed
+        personMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.comparing(Person::getLastName).reversed()))
+                .forEach(System.out::println);
+
     }
 }
